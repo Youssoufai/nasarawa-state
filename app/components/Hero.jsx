@@ -6,9 +6,9 @@ const Hero = () => {
         <main className="flex h-screen flex-col justify-center items-center px-6 text-center">
             {/* Hero Text */}
             <div className="max-w-4xl text-center font-roboto">
-                <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-                    Simplifying your <br />
-                    <span className="text-green-600">access to Nasarawa State Government</span> Topics and Services
+                <h1 className="text-5xl md:text-5xl font-bold text-gray-900 leading-tight">
+                    Simplifying your
+                    <span className="text-green-600"> access to <br /> Nasarawa State Government <br /> </span> Topics and Services
                 </h1>
             </div>
 
