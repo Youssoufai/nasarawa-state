@@ -1,32 +1,30 @@
 "use client"
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import React, { useRef } from 'react'
-
+import Link from 'next/link';
+import React, { useRef, useEffect } from 'react'
 
 const categories = [
     {
-        title: "Housing in Lagos",
+        title: "Housing in Nasarawa",
         description: "GET INFO ON HOUSING, PERMITS, OPAL MEMBERSHIP, LUC PAYMENTS ETC.",
-        image: "/housing-image.png", // Change this to actual image URL
-        bgColor: "bg-green-600",
-        textColor: "text-white",
+        image: "/housing.svg",
     },
     {
-        title: "Visit and Tour Lagos",
+        title: "Visit and Tour Nasarawa",
         description: "BOOK YOUR TRIP, GET A TOUR GUIDE, HOW TO PROCESS YOUR VISA",
-        image: "/tour-image.png",
-        bgColor: "bg-white",
-        textColor: "text-black",
+        image: "/travel.svg",
     },
     {
-        title: "Work in Lagos",
-        description: "FIND OUT THINGS TO KNOW ABOUT WORKING IN LAGOS",
-        image: "/work-image.png",
-        bgColor: "bg-white",
-        textColor: "text-black",
+        title: "Work in Nasarawa",
+        description: "FIND OUT THINGS TO KNOW ABOUT WORKING IN NASARAWA",
+        image: "/work.svg",
+    },
+    {
+        title: "School in Nasarawa",
+        description: "FIND OUT ABOUT SCHOOLING IN NASARAWA AND EDUCATIONAL SERVICES",
+        image: "/school.svg",
     },
 ];
-
 
 const Carousel = () => {
     const scrollRef = useRef(null);
@@ -34,14 +32,23 @@ const Carousel = () => {
     const scroll = (direction) => {
         if (scrollRef.current) {
             scrollRef.current.scrollBy({
-                left: direction === "left" ? -300 : 300,
+                left: direction === "left" ? -320 : 320,
                 behavior: "smooth",
             });
         }
     };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            scroll("right");
+        }, 5000); // Scrolls every 5 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <>
-            <section className="h-screen flex flex-col items-center justify-center px-6 text-center">
+        <div className="space-y-12 p-8">
+            <section className="h-[75vh] flex flex-col items-center justify-center px-6 text-center">
                 <div className="max-w-3xl">
                     <h1 className="font-bold text-4xl md:text-5xl leading-tight text-gray-900">
                         Browse 200+ online services for citizens and businesses
@@ -52,12 +59,11 @@ const Carousel = () => {
                 </div>
             </section>
 
-
-            <div className="relative w-full px-4">
+            <div className="relative w-full px-6">
                 {/* Left Arrow */}
                 <button
                     onClick={() => scroll("left")}
-                    className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-200 rounded-full shadow-lg"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-3 bg-gray-200 rounded-full shadow-md z-10 hover:bg-gray-300 transition"
                 >
                     <ChevronLeft className="w-6 h-6 text-gray-700" />
                 </button>
@@ -65,19 +71,21 @@ const Carousel = () => {
                 {/* Scrollable Cards */}
                 <div
                     ref={scrollRef}
-                    className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth"
+                    className="flex gap-6 overflow-hidden scroll-smooth no-scrollbar"
                 >
                     {categories.map((item, index) => (
                         <div
                             key={index}
-                            className="w-[320px] min-w-[320px] rounded-lg overflow-hidden shadow-md"
+                            className="w-[320px] min-w-[320px] rounded-lg overflow-hidden shadow-lg transition-all duration-300 group"
                         >
-                            <img src={item.image} alt={item.title} className="w-full h-48" />
-                            <div className={`${item.bgColor} p-4`}>
-                                <h3 className={`text-lg font-bold ${item.textColor}`}>
+                            <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+                            <div className="bg-white p-4 transition-all duration-300 group-hover:bg-green-700">
+                                <h3 className="text-lg font-bold text-black group-hover:text-white">
                                     {item.title} ↗
                                 </h3>
-                                <p className={`mt-2 text-sm ${item.textColor}`}>{item.description}</p>
+                                <p className="mt-2 text-sm text-gray-700 group-hover:text-white">
+                                    {item.description}
+                                </p>
                             </div>
                         </div>
                     ))}
@@ -86,14 +94,16 @@ const Carousel = () => {
                 {/* Right Arrow */}
                 <button
                     onClick={() => scroll("right")}
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-200 rounded-full shadow-lg"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-3 bg-gray-200 rounded-full shadow-md z-10 hover:bg-gray-300 transition"
                 >
                     <ChevronRight className="w-6 h-6 text-gray-700" />
                 </button>
             </div>
 
-        </>
-
+            <h2 className='text-center'>
+                Ready to explore? <Link href='#' className='text-green-600 underline'>Browse All Services</Link>
+            </h2>
+        </div>
     )
 }
 

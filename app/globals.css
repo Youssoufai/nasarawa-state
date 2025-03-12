@@ -6,6 +6,8 @@
     --color-dark-green: #1C3F3A;
     --color-light-green: #108A00;
     --color-dark: #333;
+    --color-bright-green: #00A63E;
+    --color-faint-green: #F0F7F6;
 }
 
 @theme {
