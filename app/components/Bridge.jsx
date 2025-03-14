@@ -91,11 +91,11 @@ const Bridge = () => {
 
 // Data for stats section
 const stats = [
-    { title: "Est. Population", value: "22mn+" },
-    { title: "Number of Visitors", value: "1.3mn+" },
+    { title: "Est. Population", value: "2mn+" },
+    { title: "Land Area Sq KM", value: "28,735.0" },
     { title: "State Revenue - 2023", value: "N651.2bn" },
-    { title: "Vehicles on the Road", value: "5.2mn+" },
-    { title: "Biggest Economy", value: "6th in Africa" }
+    { title: "LGA", value: "13" },
+    { title: "Internal Revenue Generated (2023)", value: "₦23,487,432,037.23" }
 ];
 
 // SVG Divider Component
