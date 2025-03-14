@@ -5,6 +5,11 @@ import "./globals.css";
 export const metadata = {
   title: "Nasarawa State",
   description: "Nasarawa State Website Demo",
+  icons: {
+    icon: "/logo.png", // Standard icon
+    shortcut: "/logo.png", // Shortcut icon
+    apple: "/logo.png", // Apple touch icon (optional)
+  },
 };
 
 export default function RootLayout({ children }) {
