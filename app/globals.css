@@ -13,3 +13,8 @@
 @theme {
     --font-roboto: "Open Sans", sans-serif;
 }
+
+html,
+body {
+    overflow-x: hidden;
+}

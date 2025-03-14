@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -15,7 +15,7 @@ const Bridge = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             nextSlide();
-        }, 3000); // Auto-slide every 3 seconds
+        }, 3000);
         return () => clearInterval(interval);
     }, [current]);
 
@@ -26,46 +26,32 @@ const Bridge = () => {
     const prevSlide = () => {
         setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
+
     return (
         <>
-            <section className='flex justify-between items-center gap-6 border-gray-300 p-12'>
-                <div className='text-center space-y-4'>
-                    <h3 className='font-light uppercase text-sm '>Est. Population</h3>
-                    <p className='font-bold text-2xl'>22mn+</p>
-                </div>
-
-                <Divider />
-
-                <div className='text-center space-y-4'>
-                    <h3 className='font-light uppercase text-sm '>Number of Visitors</h3>
-                    <p className='font-bold text-2xl'>1.3mn+</p>
-                </div>
-
-                <Divider />
-
-                <div className='text-center space-y-4'>
-                    <h3 className='font-light uppercase text-sm '>State Revenue - 2023</h3>
-                    <p className='font-bold text-2xl'>N651.2bn</p>
-                </div>
-
-                <Divider />
-
-                <div className='text-center space-y-4'>
-                    <h3 className='font-light uppercase text-sm tracking-wide'>Vehicles on the Road</h3>
-                    <p className='font-bold text-2xl'>5.2mn+</p>
-                </div>
-
-                <Divider />
-
-                <div className='text-center space-y-4'>
-                    <h3 className='font-light uppercase text-sm tracking-wide'>Biggest Economy</h3>
-                    <p className='font-bold text-2xl'>6th in Africa</p>
-                </div>
+            <section className="flex flex-wrap justify-center md:justify-between items-center gap-6 border-gray-300 p-6 md:p-12 text-center">
+                {stats.map((stat, index) => (
+                    <React.Fragment key={index}>
+                        <div className="space-y-2">
+                            <h3 className="font-light uppercase text-xs md:text-sm">{stat.title}</h3>
+                            <motion.p
+                                className="font-bold text-lg md:text-2xl"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.2 }}
+                            >
+                                {stat.value}
+                            </motion.p>
+                        </div>
+                        {index !== stats.length - 1 && <Divider />}
+                    </React.Fragment>
+                ))}
             </section>
-            <section className='flex'>
-                <div className="relative w-full max-w-[800px] mx-auto overflow-hidden rounded-xl">
-                    <div className="relative w-full h-[400px]">
-                        <AnimatePresence>
+
+            <section className="flex justify-center p-4">
+                <div className="relative w-full max-w-[90%] md:max-w-[800px] mx-auto overflow-hidden rounded-xl">
+                    <div className="relative w-full h-[250px] md:h-[400px]">
+                        <AnimatePresence mode="wait">
                             <motion.img
                                 key={images[current].src}
                                 src={images[current].src}
@@ -79,12 +65,10 @@ const Bridge = () => {
                         </AnimatePresence>
                     </div>
 
-                    {/* Left Button */}
+                    {/* Navigation Buttons */}
                     <button onClick={prevSlide} className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
                         <ChevronLeft size={24} />
                     </button>
-
-                    {/* Right Button */}
                     <button onClick={nextSlide} className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
                         <ChevronRight size={24} />
                     </button>
@@ -102,16 +86,22 @@ const Bridge = () => {
                 </div>
             </section>
         </>
-
-
-
     );
 };
 
+// Data for stats section
+const stats = [
+    { title: "Est. Population", value: "22mn+" },
+    { title: "Number of Visitors", value: "1.3mn+" },
+    { title: "State Revenue - 2023", value: "N651.2bn" },
+    { title: "Vehicles on the Road", value: "5.2mn+" },
+    { title: "Biggest Economy", value: "6th in Africa" }
+];
+
 // SVG Divider Component
 const Divider = () => (
-    <svg height="40" width="2" className="text-gray-300">
-        <line x1="1" y1="0" x2="1" y2="40" stroke="currentColor" strokeWidth="2" />
+    <svg height="30" width="2" className="text-gray-300 hidden md:block">
+        <line x1="1" y1="0" x2="1" y2="30" stroke="currentColor" strokeWidth="2" />
     </svg>
 );
 
