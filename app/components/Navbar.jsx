@@ -88,7 +88,7 @@ export default function Navbar() {
             </nav>
 
             {/* Push Content Below Navbar */}
-            <div className="pt-24"></div>
+
         </>
     );
 }
