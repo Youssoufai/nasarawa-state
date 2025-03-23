@@ -8,6 +8,15 @@ import Link from "next/link";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
+    const navLinks = [
+        { name: "HOME", href: "/", icon: <ArrowUpRight size={16} /> },
+        { name: "ABOUT", href: "/about", icon: <ChevronDown size={16} /> },
+        { name: "SERVICES", href: "/services", icon: <ArrowUpRight size={16} /> },
+        { name: "NEWSROOM", href: "/newsroom", icon: <ArrowUpRight size={16} /> },
+        { name: "EVENTS", href: "/events", icon: <ArrowUpRight size={16} /> },
+        { name: "CONNECT", href: "/connect", icon: <ArrowUpRight size={16} /> },
+    ];
+
     return (
         <>
             {/* Emergency Banner */}
@@ -21,23 +30,16 @@ export default function Navbar() {
             <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md border-b border-gray-200 font-roboto">
                 <div className="flex items-center justify-between p-6 max-w-7xl mx-auto">
                     {/* Logo */}
-                    <div>
-                        <img src="logo.png" className="h-[50px] w-[50px]" alt="Logo" />
-                    </div>
+                    <Link href="/">
+                        <img src="/logo.png" className="h-12 w-12" alt="Company Logo" />
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex gap-8 items-center">
-                        {[
-                            { name: "HOME", icon: <ArrowUpRight size={16} /> },
-                            { name: "GOVERNMENT", icon: <ChevronDown size={16} /> },
-                            { name: "SERVICES", icon: <ArrowUpRight size={16} /> },
-                            { name: "NEWSROOM", icon: <ArrowUpRight size={16} /> },
-                            { name: "EVENTS", icon: <ArrowUpRight size={16} /> },
-                            { name: "CONNECT", icon: <ArrowUpRight size={16} /> },
-                        ].map((link, index) => (
+                        {navLinks.map((link, index) => (
                             <Link
                                 key={index}
-                                href="#"
+                                href={link.href}
                                 className="flex items-center gap-2 text-gray-800 text-sm font-medium uppercase hover:text-green-600 transition"
                             >
                                 {link.name} {link.icon}
@@ -48,9 +50,9 @@ export default function Navbar() {
                     {/* Search & Mobile Menu Button */}
                     <div className="flex items-center gap-4">
                         {/* Search Icon */}
-                        <div className="text-gray-600 hover:text-green-600 transition cursor-pointer">
+                        <button className="text-gray-600 hover:text-green-600 transition">
                             <Search size={20} />
-                        </div>
+                        </button>
 
                         {/* Mobile Menu Button */}
                         <button
@@ -71,17 +73,10 @@ export default function Navbar() {
                             exit={{ opacity: 0, y: -10 }}
                             className="md:hidden bg-white border-t border-gray-200 px-6 py-4"
                         >
-                            {[
-                                { name: "HOME", icon: <ArrowUpRight size={16} /> },
-                                { name: "GOVERNMENT", icon: <ChevronDown size={16} /> },
-                                { name: "SERVICES", icon: <ArrowUpRight size={16} /> },
-                                { name: "NEWSROOM", icon: <ArrowUpRight size={16} /> },
-                                { name: "EVENTS", icon: <ArrowUpRight size={16} /> },
-                                { name: "CONNECT", icon: <ArrowUpRight size={16} /> },
-                            ].map((link, index) => (
+                            {navLinks.map((link, index) => (
                                 <Link
                                     key={index}
-                                    href="#"
+                                    href={link.href}
                                     className="block py-2 text-gray-800 text-sm font-medium uppercase hover:text-green-600 transition"
                                 >
                                     {link.name}

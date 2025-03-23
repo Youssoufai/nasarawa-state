@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react"; // Importing icon for button
+import Link from "next/link";
 
 const Hero = () => {
     return (
